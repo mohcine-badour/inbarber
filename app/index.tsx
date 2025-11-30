@@ -1,17 +1,17 @@
-import { Layout, Text, Button, Spinner } from "@ui-kitten/components";
-import { fonts, useAppFonts } from "./theme/fonts";
-import { ImageProps, StyleSheet, View } from "react-native";
+import { Button, Layout, Spinner, Text } from "@ui-kitten/components";
+import { Image } from "expo-image";
 import { useState } from "react";
-import FlashMessage, {
-  showMessage,
-} from "react-native-flash-message";
+import { ImageProps, StyleSheet, View } from "react-native";
+import FlashMessage, { showMessage } from "react-native-flash-message";
+import { fonts, useAppFonts } from "./theme/fonts";
 
+import { router } from "expo-router";
 import {
+  CountryCode,
   PhoneInput,
   isValidNumber,
-  CountryCode,
 } from "react-native-phone-entry";
-import { router } from "expo-router";
+import { TypeAnimation } from "react-native-type-animation";
 
 const LoadingIndicator = (props: ImageProps): React.ReactElement => (
   <View style={[props.style, styles.indicator]}>
@@ -29,7 +29,23 @@ const Index = () => {
 
   return (
     <Layout style={styles.container}>
-      <Text style={styles.title}>IN BARBER</Text>
+      <View style={styles.titleContainer}>
+        <Image
+          source={require("./assets/gif/barber-pole.gif")}
+          style={styles.barberPoleGif}
+          contentFit="contain"
+        />
+        <TypeAnimation
+          cursorStyle={{ color: "white" }}
+          repeat={2}
+          sequence={[{ text: "IN BARBER" }]}
+          style={{
+            color: "black",
+            fontFamily: fonts.santaunicorn,
+            fontSize: 40,
+          }}
+        />
+      </View>
       <Layout style={styles.descriptionContainer}>
         <Text style={styles.description}>Enter your phone number</Text>
         <Text style={styles.secondaryDescription}>
@@ -64,7 +80,7 @@ const Index = () => {
         <Button
           style={styles.verifyButton}
           status="basic"
-          accessoryLeft={() => <LoadingIndicator />}
+          // accessoryLeft={() => <LoadingIndicator />}
           onPress={() => {
             router.push("/screens/setup/otp");
             showMessage({
@@ -86,6 +102,16 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     gap: 48,
     padding: 16,
+  },
+  titleContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    gap: 16,
+  },
+  barberPoleGif: {
+    width: 72,
+    height: 72,
   },
   title: {
     textAlign: "center",
