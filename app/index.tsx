@@ -82,7 +82,7 @@ const Index = () => {
           status="basic"
           // accessoryLeft={() => <LoadingIndicator />}
           onPress={() => {
-            router.push("/screens/setup/otp");
+            router.push("/screens/home/home");
             showMessage({
               message: "Verification ... please wait",
               type: "success",

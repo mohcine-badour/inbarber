@@ -12,6 +12,7 @@ export default function RootLayout() {
         <Stack screenOptions={appScreenOptions}>
           <Stack.Screen name="index" />
           <Stack.Screen name="screens/setup/otp" />
+          <Stack.Screen name="screens/home/home" />
           <FlashMessage position="top" />
         </Stack>
       </ApplicationProvider>
